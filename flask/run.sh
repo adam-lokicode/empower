@@ -18,10 +18,10 @@ function cleanup {
 trap cleanup EXIT
 
 # needed for caches since GCP redis doesn't have public IP
-ACTIVE_ACCOUNT=$(gcloud auth list --format="value(account)" --filter="status:ACTIVE")
-if [ -z "$ACTIVE_ACCOUNT" ]; then
-    gcloud auth login
-fi
-gcloud compute ssh redis-relay --zone=us-central1-a -- -N -L 6379:10.251.35.179:6379 &
+#ACTIVE_ACCOUNT=$(gcloud auth list --format="value(account)" --filter="status:ACTIVE")
+#if [ -z "$ACTIVE_ACCOUNT" ]; then
+#    gcloud auth login
+#fi
+#gcloud compute ssh redis-relay --zone=us-central1-a -- -N -L 6379:10.251.35.179:6379 &
 
 flask run --port $LOCAL_PORT
